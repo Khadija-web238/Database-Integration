@@ -1,9 +1,11 @@
 const express = require("express");
 const { DatabaseSync } = require("node:sqlite");
+const path = require("node:path");
 
 const app = express();
 app.use(express.json());
 
+app.use(express.static(path.join(__dirname, "public")));
 
 app.use((err, req, res, next) => {
   if (err.type === "entity.parse.failed") {
